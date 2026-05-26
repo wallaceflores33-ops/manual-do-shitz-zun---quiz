@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descubra o que seu Shih Tzu precisa</title>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1012902778108285');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1012902778108285&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script src="https://supermago.b-cdn.net/supermago.js?ver=20250224" defer></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #fff8f0 0%, #ffeedd 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .container {
+    background: #fff;
+    border-radius: 24px;
+    max-width: 560px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ── HEADER BAR ── */
+  .header {
+    background: linear-gradient(135deg, #c8860a 0%, #e6a020 100%);
+    padding: 20px 28px 16px;
+    color: #fff;
+    text-align: center;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    padding: 4px 12px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .header h1 { font-size: 22px; font-weight: 800; line-height: 1.3; }
+
+  /* ── INTRO ── */
+  #intro .hero {
+    padding: 36px 32px 10px;
+    text-align: center;
+  }
+  .dog-icon { font-size: 64px; margin-bottom: 16px; animation: bounce 2s infinite; }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  #intro h2 { font-size: 24px; font-weight: 800; color: #1a1a1a; line-height: 1.35; margin-bottom: 12px; }
+  #intro p { color: #555; font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
+
+  .trust-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .trust-item { font-size: 13px; color: #888; display: flex; align-items: center; gap: 5px; }
+  .trust-item span.dot { color: #e6a020; font-size: 18px; }
+
+  .btn-start {
+    display: block;
+    background: linear-gradient(135deg, #e6a020, #c8860a);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
+    text-align: center;
+    padding: 18px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: .3px;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 6px 20px rgba(200,134,10,.35);
+    margin-bottom: 12px;
+  }
+  .btn-start:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(200,134,10,.45); }
+
+  .secure-note { text-align: center; font-size: 12px; color: #aaa; padding-bottom: 28px; }
+
+  /* ── PROGRESS ── */
+  .progress-wrap { padding: 20px 28px 0; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 13px; color: #888; margin-bottom: 8px; }
+  .progress-label span:last-child { font-weight: 700; color: #c8860a; }
+  .progress-bar { height: 8px; background: #f0e8da; border-radius: 10px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #e6a020, #c8860a); border-radius: 10px; transition: width .5s ease; }
+
+  /* ── QUESTION ── */
+  .question-body { padding: 24px 28px 28px; }
+  .question-body h2 { font-size: 19px; font-weight: 800; color: #1a1a1a; margin-bottom: 20px; line-height: 1.4; }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all .2s;
+    background: #fff;
+  }
+  .option:hover { border-color: #e6a020; background: #fffbf5; }
+  .option.selected { border-color: #c8860a; background: #fff8ed; }
+  .option .letter {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    background: #f5ede0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #c8860a;
+    transition: all .2s;
+  }
+  .option.selected .letter { background: #c8860a; color: #fff; }
+  .option .text { font-size: 15px; color: #333; line-height: 1.4; padding-top: 4px; }
+
+  .btn-next {
+    display: block;
+    background: linear-gradient(135deg, #e6a020, #c8860a);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    text-align: center;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    opacity: .4;
+    pointer-events: none;
+    transition: opacity .3s, transform .15s, box-shadow .15s;
+    box-shadow: 0 4px 16px rgba(200,134,10,.25);
+  }
+  .btn-next.enabled { opacity: 1; pointer-events: all; }
+  .btn-next.enabled:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,134,10,.4); }
+
+  /* ── LOADING ── */
+  #loading { text-align: center; padding: 50px 32px; }
+  .loading-dog { font-size: 72px; animation: wag 0.7s infinite alternate; display: inline-block; }
+  @keyframes wag {
+    from { transform: rotate(-8deg); }
+    to   { transform: rotate(8deg); }
+  }
+  #loading h2 { font-size: 20px; font-weight: 800; color: #1a1a1a; margin: 20px 0 8px; }
+  #loading p { color: #888; font-size: 14px; margin-bottom: 28px; }
+
+  .loading-steps { list-style: none; text-align: left; display: inline-block; }
+  .loading-steps li {
+    font-size: 14px;
+    color: #aaa;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .loading-steps li .check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    transition: all .4s;
+    flex-shrink: 0;
+  }
+  .loading-steps li.done { color: #333; }
+  .loading-steps li.done .check { background: #22c55e; border-color: #22c55e; color: #fff; }
+
+  .spinner-bar {
+    width: 200px;
+    height: 6px;
+    background: #f0e8da;
+    border-radius: 10px;
+    margin: 24px auto 0;
+    overflow: hidden;
+  }
+  .spinner-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e6a020, #c8860a);
+    border-radius: 10px;
+    width: 0%;
+    transition: width .6s ease;
+  }
+
+  /* ── RESULT ── */
+  #result .result-header {
+    background: linear-gradient(135deg, #c8860a, #e6a020);
+    padding: 28px 28px 24px;
+    text-align: center;
+    color: #fff;
+  }
+  .result-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,.22);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 14px;
+    margin-bottom: 14px;
+  }
+  .result-header h2 { font-size: 21px; font-weight: 800; line-height: 1.35; }
+
+  .result-body { padding: 24px 28px; }
+  .result-body > p { color: #555; font-size: 14.5px; line-height: 1.7; margin-bottom: 22px; }
+
+  .result-title { font-size: 16px; font-weight: 800; color: #1a1a1a; margin-bottom: 12px; }
+  .learn-list { list-style: none; margin-bottom: 24px; }
+  .learn-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14.5px;
+    color: #333;
+    padding: 9px 0;
+    border-bottom: 1px solid #f5f5f5;
+    line-height: 1.4;
+  }
+  .learn-list li:last-child { border-bottom: none; }
+
+  /* Testimonial */
+  .testimonial {
+    background: #fffbf3;
+    border-left: 4px solid #e6a020;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 28px;
+  }
+  .stars { font-size: 16px; margin-bottom: 8px; }
+  .testimonial p { font-size: 14px; color: #444; line-height: 1.6; font-style: italic; }
+  .testimonial .author { font-size: 13px; color: #888; margin-top: 8px; font-style: normal; font-weight: 600; }
+
+  /* Offer box */
+  .offer-box {
+    background: linear-gradient(135deg, #fffbf0, #fff3d6);
+    border: 2px solid #e6c06a;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .offer-box .paw { font-size: 28px; margin-bottom: 8px; }
+  .offer-box h3 { font-size: 18px; font-weight: 800; color: #1a1a1a; margin-bottom: 14px; }
+  .price-row { margin-bottom: 6px; }
+  .price-old { font-size: 14px; color: #aaa; text-decoration: line-through; }
+  .price-new { font-size: 36px; font-weight: 900; color: #c8860a; line-height: 1.1; }
+  .price-new sup { font-size: 18px; vertical-align: super; }
+  .limited-badge {
+    display: inline-block;
+    background: #fff0d0;
+    border: 1px solid #f5c842;
+    color: #b07a00;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    margin: 10px 0 16px;
+  }
+
+  .offer-includes { list-style: none; text-align: left; margin-bottom: 20px; }
+  .offer-includes li {
+    font-size: 14px;
+    color: #333;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .offer-includes li:last-child { border: none; }
+  .offer-includes li .ck { color: #22c55e; font-weight: 800; font-size: 16px; }
+
+  .btn-cta {
+    display: block;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 900;
+    text-align: center;
+    padding: 20px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: .3px;
+    box-shadow: 0 6px 22px rgba(34,197,94,.35);
+    transition: transform .15s, box-shadow .15s;
+    margin-bottom: 12px;
+  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(34,197,94,.45); }
+
+  .payment-methods { font-size: 12px; color: #aaa; margin-bottom: 16px; }
+  .guarantee-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: #999;
+    padding-top: 4px;
+  }
+  .guarantee-row span { display: flex; align-items: center; gap: 4px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ══════════ INTRO ══════════ -->
+  <div id="intro" class="screen active">
+    <div class="header">
+      <div class="badge">🐾 Quiz Gratuito</div>
+      <h1>Descubra o que seu<br>Shih Tzu precisa</h1>
+    </div>
+    <div class="hero">
+      <div class="dog-icon">🐶</div>
+      <h2>Responda 5 perguntas rápidas e receba seu guia gratuito personalizado</h2>
+      <p>Em menos de 1 minuto, saberemos exatamente o que seu Shih Tzu precisa — e como você pode ajudá-lo hoje mesmo.</p>
+      <div class="trust-row">
+        <div class="trust-item"><span class="dot">⏱</span> Menos de 1 minuto</div>
+        <div class="trust-item"><span class="dot">🎁</span> 100% gratuito</div>
+        <div class="trust-item"><span class="dot">✅</span> Resultado imediato</div>
+      </div>
+      <button class="btn-start" onclick="startQuiz()">🐾 INICIAR QUIZ AGORA</button>
+      <div class="secure-note">🔒 Suas respostas são confidenciais</div>
+    </div>
+  </div>
+
+  <!-- ══════════ QUESTIONS ══════════ -->
+  <div id="quiz" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="q-label">Pergunta 1 de 5</span>
+        <span id="q-pct">20%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:20%"></div></div>
+    </div>
+    <div class="question-body">
+      <h2 id="q-text"></h2>
+      <div id="options-container"></div>
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()">PRÓXIMA PERGUNTA →</button>
+    </div>
+  </div>
+
+  <!-- ══════════ LOADING ══════════ -->
+  <div id="loading" class="screen">
+    <div class="loading-dog">🐶</div>
+    <h2>Analisando o perfil do seu Shih Tzu...</h2>
+    <p>Preparando as orientações certas pra você</p>
+    <ul class="loading-steps" id="loading-steps">
+      <li id="ls1"><span class="check">✓</span> Identificando pontos de atenção...</li>
+      <li id="ls2"><span class="check">✓</span> Cruzando com perfil de tutores similares...</li>
+      <li id="ls3"><span class="check">✓</span> Gerando seu guia personalizado...</li>
+    </ul>
+    <div class="spinner-bar"><div class="spinner-fill" id="spin-fill"></div></div>
+  </div>
+
+  <!-- ══════════ RESULT ══════════ -->
+  <div id="result" class="screen">
+    <div class="result-header">
+      <div class="result-badge">✓ Análise concluída</div>
+      <h2>Seu Shih Tzu precisa de atenção em 3 áreas — e você resolve tudo em casa.</h2>
+    </div>
+    <div class="result-body">
+      <p>Com base nas suas respostas, identificamos os principais pontos que fazem tutores de Shih Tzu sofrerem desnecessariamente. A boa notícia: todos têm solução simples — desde que você saiba o jeito certo de agir com essa raça.</p>
+
+      <div class="result-title">O que você vai aprender:</div>
+      <ul class="learn-list">
+        <li>🐾 Como estabelecer rotina de higiene do jeito certo para a raça</li>
+        <li>🐾 Como o Shih Tzu aprende — e por que técnicas genéricas não funcionam</li>
+        <li>🐾 Alimentação que previne doenças e alergias comuns da raça</li>
+        <li>🐾 Adestramento em casa sem gastar com profissional</li>
+        <li>🐾 Cuidados com pelo, olhos e saúde específicos do Shih Tzu</li>
+      </ul>
+
+      <div class="testimonial">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Tinha vários problemas com minha Bolinha. Comprei o manual e em 2 semanas ela estava bem mais calma, fazendo xixi no lugar certo e comendo melhor. Não acredito que custou tão pouco!"</p>
+        <div class="author">— Mariana Silva, SP</div>
+      </div>
+
+      <div class="offer-box">
+        <div class="paw">🐾</div>
+        <h3>Manual Completo do Shih Tzu</h3>
+        <div class="price-row">
+          <div class="price-old">De R$47,00</div>
+          <div class="price-new"><sup>R$</sup>10<sup>,00</sup></div>
+        </div>
+        <div class="limited-badge">✅ Oferta especial por tempo limitado</div>
+
+        <ul class="offer-includes">
+          <li><span class="ck">✓</span> Manual Completo do Shih Tzu (E-book PDF)</li>
+          <li><span class="ck">✓</span> Guia de Alimentação Saudável <em>(Bônus)</em></li>
+          <li><span class="ck">✓</span> Guia de Tipos de Tosa <em>(Bônus)</em></li>
+          <li><span class="ck">✓</span> Acesso imediato no celular, tablet e computador</li>
+          <li><span class="ck">✓</span> Garantia de 7 dias — ou seu dinheiro de volta</li>
+        </ul>
+
+        <button class="btn-cta" onclick="handlePurchase()">🐾 QUERO O MANUAL AGORA — R$10</button>
+        <div class="payment-methods">Pix · Cartão · Boleto · Acesso imediato</div>
+        <div class="guarantee-row">
+          <span>🔒 Pagamento 100% seguro</span>
+          <span>↩️ 7 dias de garantia total</span>
+        </div>
+      </div>
+      <p style="font-size:12px;color:#bbb;text-align:center;padding-bottom:8px;">Se não gostar, devolvemos 100% — sem burocracia.</p>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+  const questions = [
+    {
+      text: "O que mais te preocupa no seu Shih Tzu hoje?",
+      options: [
+        { l: "A", t: "Comportamento: late demais, morde ou não obedece" },
+        { l: "B", t: "Higiene: faz xixi e cocô em todo lugar da casa" },
+        { l: "C", t: "Saúde: fica doente com frequência ou tem alergias" },
+        { l: "D", t: "Alimentação: não sei o que pode ou não pode dar" }
+      ]
+    },
+    {
+      text: "Há quanto tempo você tem Shih Tzu?",
+      options: [
+        { l: "A", t: "Acabei de adotar, menos de 3 meses" },
+        { l: "B", t: "Entre 3 meses e 1 ano" },
+        { l: "C", t: "Entre 1 e 3 anos" },
+        { l: "D", t: "Mais de 3 anos" }
+      ]
+    },
+    {
+      text: "Seu Shih Tzu já comeu as próprias fezes ou as de outro animal?",
+      options: [
+        { l: "A", t: "Sim, faz isso com frequência. Me dá nojo e vergonha" },
+        { l: "B", t: "Já aconteceu algumas vezes, fico preocupado" },
+        { l: "C", t: "Nunca fez isso, mas tenho medo que comece" },
+        { l: "D", t: "Não sei, não estava presente quando aconteceu" }
+      ]
+    },
+    {
+      text: "Você já tentou resolver esses problemas como?",
+      options: [
+        { l: "A", t: "Só pesquisei no Google e YouTube" },
+        { l: "B", t: "Pedi conselho em grupos de WhatsApp" },
+        { l: "C", t: "Levei ao veterinário mas o problema continua" },
+        { l: "D", t: "Contratei adestrador, sem resultado duradouro" }
+      ]
+    },
+    {
+      text: "Como você se sente em relação ao seu Shih Tzu?",
+      options: [
+        { l: "A", t: "Amo demais, mas às vezes não sei o que fazer" },
+        { l: "B", t: "Me sinto culpado por não saber cuidar direito" },
+        { l: "C", t: "Tenho medo de estar prejudicando sem querer" },
+        { l: "D", t: "Quero dar o melhor, mas falta informação confiável" }
+      ]
+    },
+    {
+      text: "O que você mais quer para o seu Shih Tzu?",
+      options: [
+        { l: "A", t: "Que seja obediente e bem comportado" },
+        { l: "B", t: "Que tenha saúde de ferro e viva mais anos" },
+        { l: "C", t: "Que eu economize com vet e adestrador" },
+        { l: "D", t: "Que seja feliz, sociável e cheio de energia" }
+      ]
+    }
+  ];
+
+  let current = 0, selected = null;
+
+  function show(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function startQuiz() {
+    fbq('trackCustom', 'QuizStarted');
+    renderQuestion(0);
+    show('quiz');
+  }
+
+  function renderQuestion(idx) {
+    selected = null;
+    const q = questions[idx];
+    const pct = Math.round(((idx + 1) / questions.length) * 100);
+    document.getElementById('q-label').textContent = `Pergunta ${idx+1} de ${questions.length}`;
+    document.getElementById('q-pct').textContent = pct + '%';
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('q-text').textContent = q.text;
+
+    const btn = document.getElementById('btn-next');
+    btn.classList.remove('enabled');
+    btn.textContent = idx < questions.length - 1 ? 'PRÓXIMA PERGUNTA →' : 'VER MEU RESULTADO 🐾';
+
+    const cont = document.getElementById('options-container');
+    cont.innerHTML = '';
+    q.options.forEach(opt => {
+      const div = document.createElement('div');
+      div.className = 'option';
+      div.innerHTML = `<div class="letter">${opt.l}</div><div class="text">${opt.t}</div>`;
+      div.onclick = () => {
+        document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        div.classList.add('selected');
+        selected = opt.l;
+        btn.classList.add('enabled');
+      };
+      cont.appendChild(div);
+    });
+  }
+
+  function nextQuestion() {
+    if (!selected) return;
+    current++;
+    if (current < questions.length) {
+      renderQuestion(current);
+    } else {
+      fbq('trackCustom', 'QuizCompleted');
+      runLoading();
+    }
+  }
+
+  function handlePurchase() {
+    fbq('track', 'InitiateCheckout');
+    window.open('https://pay.kiwify.com.br/aiCHfnZ', '_blank');
+  }
+
+  function runLoading() {
+    show('loading');
+    const steps = ['ls1','ls2','ls3'];
+    const fill = document.getElementById('spin-fill');
+    steps.forEach(id => document.getElementById(id).classList.remove('done'));
+    fill.style.width = '0%';
+
+    let s = 0;
+    function tick() {
+      if (s < steps.length) {
+        document.getElementById(steps[s]).classList.add('done');
+        fill.style.width = ((s+1)/steps.length * 100) + '%';
+        s++;
+        setTimeout(tick, 900);
+      } else {
+        setTimeout(() => show('result'), 600);
+      }
+    }
+    setTimeout(tick, 500);
+  }
+</script>
+</body>
+</html>
